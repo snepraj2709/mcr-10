@@ -1,10 +1,10 @@
 export const DataReducer = (state, { type, payload }) => {
   switch (type) {
-    case "InitialDataFetch": {
+    case "AddProduct": {
       if (payload) {
         return {
           ...state,
-          payload,
+          allProducts: [...state.allProducts, payload],
         };
       }
       break;

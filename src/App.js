@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Department from "./pages/Department";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import AddProduct from "./pages/AddProduct";
 
 export default function App() {
   return (
@@ -12,7 +13,8 @@ export default function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/department" element={<Department />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/product/:productId" element={<ProductDetail />} />
+        <Route path="/products/:productId" element={<ProductDetail />} />
+        <Route path="/products/add" element={<AddProduct />} />
       </Routes>
     </div>
   );

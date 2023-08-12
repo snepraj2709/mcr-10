@@ -10,11 +10,18 @@ export const DataProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(DataReducer, inventoryDataLocal);
 
+  const departments = inventoryDataLocal.allProducts.reduce(
+    (acc, curr) =>
+      acc.includes(curr.department) ? [...acc] : [...acc, curr.department],
+    []
+  );
   useEffect(() => {
     localStorage.setItem(
       "inventoryState",
       JSON.stringify({
         allProducts: Data,
+        allDepartments: departments,
+        selectedDepartment: "All",
       })
     );
   }, [Data]);
