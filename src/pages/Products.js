@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import ProductHeader from "../components/ProductHeader";
 import Sidebar from "../components/Sidebar";
 import { useData } from "../context/DataContext";
 
 function Products() {
   const { state } = useData();
+  const navigate = useNavigate();
   const allProducts = state.allProducts;
-  console.log();
+  const filteredProducts = [];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,7 +39,8 @@ function Products() {
               }) => (
                 <div
                   key={id}
-                  className=" flex flex-col w-full h-20 text-center">
+                  className=" flex flex-col w-full h-20 text-center"
+                  onClick={() => navigate(`/products/${id}`)}>
                   <div className="grid grid-cols-12 gap-1 px-2 my-1">
                     <img
                       className="col-span-1 p-2 rounded-md object-cover w-16 h-16"
