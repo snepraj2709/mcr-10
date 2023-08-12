@@ -9,7 +9,12 @@ export const DataReducer = (state, { type, payload }) => {
       }
       break;
     }
-
+    case "SelectCategory":
+      return { ...state, selectedCategory: payload };
+    case "SetLowStocks":
+      return { ...state, showLowStock: payload };
+    case "SortBy":
+      return { ...state, sortBy: payload };
     default:
       return state;
   }

@@ -10,7 +10,7 @@ export const DataProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(DataReducer, inventoryDataLocal);
 
-  const departments = inventoryDataLocal.allProducts.reduce(
+  const departments = inventoryDataLocal?.allProducts.reduce(
     (acc, curr) =>
       acc.includes(curr.department) ? [...acc] : [...acc, curr.department],
     []
@@ -21,10 +21,10 @@ export const DataProvider = ({ children }) => {
       JSON.stringify({
         allProducts: Data,
         allDepartments: departments,
-        selectedDepartment: "All",
+        selectedCategory: "all",
       })
     );
-  }, [Data]);
+  }, [Data, departments]);
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>

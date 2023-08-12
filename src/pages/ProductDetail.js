@@ -9,7 +9,6 @@ function ProductDetail() {
   const product = state?.allProducts?.find(
     (product) => product.id === parseInt(productId)
   );
-  console.log(product);
   const {
     department,
     name,
