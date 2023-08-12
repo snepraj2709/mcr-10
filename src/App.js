@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 
 export default function App() {
   return (
-    <div className="App">
+    <div className="min-h-screen p-0 w-full dark:bg-slate-900 dark:text-slate-50">
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
