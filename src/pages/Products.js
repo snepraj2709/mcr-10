@@ -49,7 +49,7 @@ function Products() {
         <div className="flex flex-col col-span-6">
           <ProductHeader />
           <div className="flex flex-col ">
-            <div className="grid grid-cols-12 gap-1 bg-slate-600 px-2">
+            <div className="grid grid-cols-12 gap-1 text-black bg-slate-100 border-b-2 border-slate-600 dark:bg-slate-600 dark:text-white px-2">
               <p className="col-span-2 text-lg">Image</p>
               <p className="col-span-2 text-lg">Name</p>
               <p className="col-span-4 text-lg">Description</p>
@@ -61,14 +61,12 @@ function Products() {
               filteredProduct?.map(
                 ({
                   id,
-                  department,
                   name,
                   description,
                   price,
                   stock,
                   sku,
                   supplier,
-                  delivered,
                   imageUrl,
                 }) => (
                   <div

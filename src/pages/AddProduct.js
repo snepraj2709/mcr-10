@@ -47,16 +47,22 @@ function AddProduct() {
             <div className="flex flex-col">
               <label className="font-bold text-lg">Select Department</label>
               <select className="bg-inherit w-32">
-                <option className="bg-slate-700 text-white">Kitchen</option>
-                <option className="bg-slate-700 text-white">Clothing</option>
-                <option className="bg-slate-700 text-white">Toys</option>
+                <option className="dark:bg-slate-700 dark:text-white">
+                  Kitchen
+                </option>
+                <option className="dark:bg-slate-700 dark:text-white">
+                  Clothing
+                </option>
+                <option className="dark:bg-slate-700 dark:text-white">
+                  Toys
+                </option>
               </select>
             </div>
 
             <div className="flex flex-col">
               <label className="font-bold text-lg">Name</label>
               <input
-                className="bg-slate-700 text-white h-8 rounded-sm"
+                className="dark:bg-slate-700 dark:text-white bg-slate-100 border-slate-300 border h-8 rounded-sm"
                 value={newProduct.name}
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, name: e.target.value })
@@ -67,7 +73,7 @@ function AddProduct() {
             <div className="flex flex-col">
               <label className="font-bold text-lg">Description</label>
               <textarea
-                className="bg-slate-700 text-white rounded-sm"
+                className="dark:bg-slate-700 dark:text-white bg-slate-100 border-slate-300 border rounded-sm"
                 type="text"
                 value={newProduct.description}
                 onChange={(e) =>
@@ -79,7 +85,7 @@ function AddProduct() {
             <div className="flex flex-col">
               <label className="font-bold text-lg">Price</label>
               <input
-                className="bg-slate-700 text-white h-8 rounded-sm"
+                className="dark:bg-slate-700 dark:text-white bg-slate-100 border-slate-300 border h-8 rounded-sm"
                 type="number"
                 value={newProduct.price}
                 onChange={(e) =>
@@ -91,7 +97,7 @@ function AddProduct() {
             <div className="flex flex-col">
               <label className="font-bold text-lg">Stock</label>
               <input
-                className="bg-slate-700 text-white h-8 rounded-sm"
+                className="dark:bg-slate-700 dark:text-white bg-slate-100 border-slate-300 border h-8 rounded-sm"
                 type="number"
                 value={newProduct.stock}
                 onChange={(e) =>
@@ -103,7 +109,7 @@ function AddProduct() {
             <div className="flex flex-col">
               <label className="font-bold text-lg">SKU</label>
               <input
-                className="bg-slate-700 text-white h-8 rounded-sm"
+                className="dark:bg-slate-700 dark:text-white bg-slate-100 border-slate-300 border h-8 rounded-sm"
                 type="text"
                 value={newProduct.sku}
                 onChange={(e) =>
@@ -115,7 +121,7 @@ function AddProduct() {
             <div className="flex flex-col">
               <label className="font-bold text-lg">Supplier</label>
               <input
-                className="bg-slate-700 text-white h-8 rounded-sm"
+                className="dark:bg-slate-700 dark:text-white bg-slate-100 border-slate-300 border h-8 rounded-sm"
                 type="text"
                 value={newProduct.supplier}
                 onChange={(e) =>
@@ -127,7 +133,7 @@ function AddProduct() {
             <div className="flex flex-col">
               <label className="font-bold text-lg">Delivered</label>
               <input
-                className="bg-slate-700 text-white h-8 rounded-sm"
+                className="dark:bg-slate-700 dark:text-white bg-slate-100 border-slate-300 border h-8 rounded-sm"
                 type="number"
                 value={newProduct.delivered}
                 onChange={(e) =>
@@ -139,16 +145,16 @@ function AddProduct() {
             <div className="flex flex-col">
               <label className="font-bold text-lg">Image Url</label>
               <input
-                className="bg-slate-700 text-white h-8 rounded-sm"
+                className="dark:bg-slate-700 dark:text-white bg-slate-100 border-slate-300 border h-8 rounded-sm"
                 type="url"
                 value={newProduct.imageUrl}
                 onChange={(e) => uploadImage(e)}
               />
             </div>
             <button
-              className="bg-blue-500 p-3 text-white rounded-md"
+              className="bg-blue-500 p-3 text-white rounded-md w-36"
               onClick={addProduct}>
-              New
+              Add Product
             </button>
           </form>
         </div>

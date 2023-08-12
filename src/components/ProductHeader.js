@@ -23,16 +23,16 @@ function ProductHeader() {
       <select
         className="bg-inherit cursor-pointer"
         onChange={(e) => categoryChangeHandler(e)}>
-        <option className="bg-slate-700 text-white" value="all">
+        <option className="dark:bg-slate-700 dark:text-white" value="all">
           All Departments
         </option>
-        <option className="bg-slate-700 text-white" value="kitchen">
+        <option className="dark:bg-slate-700 dark:text-white" value="kitchen">
           Kitchen
         </option>
-        <option className="bg-slate-700 text-white" value="clothing">
+        <option className="dark:bg-slate-700 dark:text-white" value="clothing">
           Clothing
         </option>
-        <option className="bg-slate-700 text-white" value="toys">
+        <option className="dark:bg-slate-700 dark:text-white" value="toys">
           Toys
         </option>
       </select>
@@ -48,13 +48,13 @@ function ProductHeader() {
       <select
         className="bg-inherit cursor-pointer"
         onChange={(e) => sortHandler(e)}>
-        <option className="bg-slate-700 text-white" value="name">
+        <option className="dark:bg-slate-700 dark:text-white" value="name">
           Name
         </option>
-        <option className="bg-slate-700 text-white" value="price">
+        <option className="dark:bg-slate-700 dark:text-white" value="price">
           Price
         </option>
-        <option className="bg-slate-700 text-white" value="stock">
+        <option className="dark:bg-slate-700 dark:text-white" value="stock">
           Stock
         </option>
       </select>
