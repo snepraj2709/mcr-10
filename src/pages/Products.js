@@ -31,7 +31,7 @@ function Products() {
       : categoryFiltered;
 
     const lowStockFiltered = lowStocks
-      ? sortedArray?.filter((product) => product.stock < 10)
+      ? sortedArray?.filter((product) => product.stock <= 10)
       : sortedArray;
     filteredArray.push(...lowStockFiltered);
 

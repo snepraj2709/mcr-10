@@ -1,14 +1,34 @@
 import Sidebar from "../components/Sidebar";
+import { useData } from "../context/DataContext";
 import { useTheme } from "../context/ThemeContext";
 import { FaSun, FaMoon } from "../utils/icons";
 
 export default function Dashboard() {
   const { darkTheme, setDarkTheme } = useTheme();
-  const stocks = {
-    totalStocks: 200,
-    totalDelivered: 152,
-    lowStockItems: 10,
-  };
+  const { state } = useData();
+
+  const total = state.allProducts.reduce(
+    (acc, curr) =>
+      curr.stock <= 10
+        ? {
+            ...acc,
+            totalStocks: acc.totalStocks + curr.stock,
+            totalDelivered: acc.totalDelivered + curr.delivered,
+            lowStockItems: acc.lowStockItems + 1,
+          }
+        : {
+            ...acc,
+            totalStocks: acc.totalStocks + curr.stock,
+            totalDelivered: acc.totalDelivered + curr.delivered,
+            lowStockItems: acc.lowStockItems,
+          },
+    {
+      totalStocks: 0,
+      totalDelivered: 0,
+      lowStockItems: 0,
+    }
+  );
+  const { totalStocks, totalDelivered, lowStockItems } = total;
   return (
     <div className="min-h-screen flex flex-col">
       <div className="grid grid-cols-8 overflow-hidden lg:max-w-6xl px-5 gap-2 grow">
@@ -24,15 +44,29 @@ export default function Dashboard() {
               )}
             </button>
           </div>
-          <div className=" grid grid-cols-3 gap-5 mt-5">
-            {Object.keys(stocks).map((stockType, index) => (
-              <div
-                key={index}
-                className="w-auto h-20 bg-slate-200 shadow-lg dark:bg-slate-800 dark:text-slate-100 rounded-md p-4">
-                <b className="text-lg font-bold">{stockType}</b>
-                <p>{stocks[stockType]}</p>
+          <div className="flex justify-between">
+            <div className=" flex flex-col w-auto mt-5">
+              <div className="w-auto w-min-44 h-20 bg-slate-50 shadow-lg dark:bg-slate-800 dark:text-slate-100 rounded-md p-4 text-center">
+                <p>{totalStocks}</p>
+                <b className="text-lg font-bold text-green-500">Total Stock</b>
               </div>
-            ))}
+            </div>
+            <div className=" flex flex-col w-auto mt-5">
+              <div className="w-auto h-20 bg-slate-50 shadow-lg dark:bg-slate-800 dark:text-slate-100 rounded-md p-4 text-center">
+                <p>{totalDelivered}</p>
+                <b className="text-lg font-bold text-orange-500">
+                  Total Delivered
+                </b>
+              </div>
+            </div>
+            <div className=" flex flex-col w-auto mt-5">
+              <div className="w-auto h-20 bg-slate-50 shadow-lg dark:bg-slate-800 dark:text-slate-100 rounded-md p-4 text-center">
+                <p>{lowStockItems}</p>
+                <b className="text-lg font-bold text-red-500">
+                  Low Stock Items
+                </b>
+              </div>
+            </div>
           </div>
         </div>
       </div>
