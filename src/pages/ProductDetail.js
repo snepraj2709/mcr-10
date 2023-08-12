@@ -26,8 +26,12 @@ function ProductDetail() {
         <Sidebar />
         <div className="flex flex-col col-span-6">
           <h2 className="font-bold text-2xl ml-4 pt-4">{name}</h2>
-          <div className="w-auto h-20 bg-slate-800 text-slate-100 rounded-md p-4  align-middle mt-5">
-            <img src={imageUrl} alt={description} className="object-cover" />
+          <div className="w-auto  bg-slate-100 shadow-xl dark:bg-slate-800 dark:text-slate-100 rounded-md p-4 mt-5">
+            <img
+              src={imageUrl}
+              alt={description}
+              className="object-cover w-auto h-60"
+            />
             <div className="text-lg flex space-x-2">
               <b>Price:</b>
               <p>{price}</p>

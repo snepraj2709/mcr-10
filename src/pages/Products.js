@@ -71,7 +71,7 @@ function Products() {
                 }) => (
                   <div
                     key={id}
-                    className=" flex flex-col w-full h-20 text-center"
+                    className=" flex flex-col w-full h-20 text-center cursor-pointer"
                     onClick={() => navigate(`/products/${id}`)}>
                     <div className="grid grid-cols-12 gap-1 px-2 my-1">
                       <img
