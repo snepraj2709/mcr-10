@@ -17,7 +17,7 @@ export default function Dashboard() {
               <div
                 key={index}
                 className="w-auto h-20 bg-slate-800 text-slate-100 rounded-md p-4">
-                <b>{stockType}</b>
+                <b className="text-lg font-bold">{stockType}</b>
                 <p>{stocks[stockType]}</p>
               </div>
             ))}

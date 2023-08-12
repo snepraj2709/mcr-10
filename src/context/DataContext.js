@@ -1,16 +1,26 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { DataReducer } from "../reducer/DataReducer";
-import { appData } from "../data/data";
+import { inventoryData } from "../data/data";
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const Data = appData;
+  const Data = inventoryData;
+  const inventoryDataLocal = JSON.parse(localStorage.getItem("inventoryState"));
 
-  const [state, dispatch] = useReducer(DataReducer, Data);
+  const [state, dispatch] = useReducer(
+    DataReducer,
+    inventoryDataLocal.allProducts
+  );
+  console.log("state", state);
 
   useEffect(() => {
-    dispatch({ type: "InitialDataFetch", payload: Data });
+    localStorage.setItem(
+      "inventoryState",
+      JSON.stringify({
+        allProducts: Data,
+      })
+    );
   }, [Data]);
 
   return (
@@ -19,3 +29,4 @@ export const DataProvider = ({ children }) => {
     </DataContext.Provider>
   );
 };
+export const useData = () => useContext(DataContext);

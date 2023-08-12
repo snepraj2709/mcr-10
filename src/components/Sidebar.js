@@ -37,7 +37,7 @@ function Sidebar() {
         </b>
       </NavLink>
       <NavLink
-        to="/department"
+        to="/products"
         className={({ isActive }) => {
           return isActive
             ? `${classes} text-blue-500`
