@@ -19,7 +19,7 @@ function ProductHeader() {
 
   return (
     <div className="flex justify-between align-middle py-3">
-      <p className="font-bold text-2xl ml-4 pt-4">Products</p>
+      <p className="font-bold text-2xl">Products</p>
       <select
         className="bg-inherit cursor-pointer"
         onChange={(e) => categoryChangeHandler(e)}>
@@ -36,7 +36,7 @@ function ProductHeader() {
           Toys
         </option>
       </select>
-      <div className="cursor-pointer">
+      <div className="cursor-pointer my-auto">
         <input
           type="checkbox"
           defaultChecked={false}
