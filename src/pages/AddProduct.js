@@ -2,6 +2,7 @@ import { useData } from "../context/DataContext";
 import Sidebar from "../components/Sidebar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 function AddProduct() {
   const { state, dispatch } = useData();
@@ -15,13 +16,24 @@ function AddProduct() {
     sku: "",
     supplier: "",
     delivered: "",
-    imageUrl: null,
+    imageUrl: "",
   });
   const navigate = useNavigate();
+
+  const uploadImage = (e) => {
+    if (newProduct?.imageUrl === "") {
+      setNewProduct({
+        ...newProduct,
+        imageUrl: "https://picsum.photos/id/237/200/300",
+      });
+    }
+  };
 
   function addProduct() {
     dispatch({ type: "AddProduct", payload: newProduct });
     navigate("/products");
+    toast.success("Added New product");
+    console.log(newProduct);
   }
 
   return (
@@ -130,9 +142,7 @@ function AddProduct() {
                 className="bg-slate-700 text-white h-8 rounded-sm"
                 type="url"
                 value={newProduct.imageUrl}
-                onChange={(e) =>
-                  setNewProduct({ ...newProduct, imageUrl: e.target.value })
-                }
+                onChange={(e) => uploadImage(e)}
               />
             </div>
             <button

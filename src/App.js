@@ -5,10 +5,12 @@ import Department from "./pages/Department";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import AddProduct from "./pages/AddProduct";
+import ToastWrapper from "./components/ToastWrapper";
 
 export default function App() {
   return (
     <div className="min-h-screen p-0 w-full dark:bg-slate-900 dark:text-slate-50">
+      <ToastWrapper />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/department" element={<Department />} />
