@@ -2,16 +2,13 @@ import { useNavigate } from "react-router-dom";
 import ProductHeader from "../components/ProductHeader";
 import Sidebar from "../components/Sidebar";
 import { useData } from "../context/DataContext";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 function Products() {
   const { state } = useData();
   const navigate = useNavigate();
-  const [filteredProduct, setFilteredProduct] = useState([
-    ...state?.allProducts,
-  ]);
 
-  const filteredProducts = () => {
+  const filteredProducts = useMemo(() => {
     const filteredArray = [];
     const category = state?.selectedCategory;
     const lowStocks = state?.showLowStock;
@@ -35,12 +32,13 @@ function Products() {
       : sortedArray;
     filteredArray.push(...lowStockFiltered);
 
-    setFilteredProduct(filteredArray);
-  };
-
-  useEffect(() => {
-    filteredProducts();
-  }, [state.selectedCategory, state.showLowStock, state.sortBy]);
+    return filteredArray;
+  }, [
+    state?.allProducts,
+    state?.selectedCategory,
+    state?.showLowStock,
+    state?.sortBy,
+  ]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -57,8 +55,8 @@ function Products() {
               <p className="col-span-1 text-lg">Stock</p>
               <p className="col-span-2 text-lg">Supplier</p>
             </div>
-            {filteredProduct.length > 0 ? (
-              filteredProduct?.map(
+            {filteredProducts.length > 0 ? (
+              filteredProducts?.map(
                 ({
                   id,
                   name,

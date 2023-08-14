@@ -1,10 +1,21 @@
+export const initialState = {
+  allProducts: [],
+  allDepartments: [],
+  selectedCategory: "all",
+  showLowStock: false,
+  sortBy: "all",
+};
+
 export const DataReducer = (state, { type, payload }) => {
   switch (type) {
+    case "FETCH_INITIAL_DATA": {
+      return { ...payload };
+    }
     case "AddProduct": {
       if (payload) {
         return {
           ...state,
-          allProducts: [...state.allProducts, payload],
+          allProducts: [...payload],
         };
       }
       break;

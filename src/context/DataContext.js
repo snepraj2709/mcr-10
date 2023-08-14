@@ -1,30 +1,45 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { DataReducer } from "../reducer/DataReducer";
+import { DataReducer, initialState } from "../reducer/DataReducer";
 import { inventoryData } from "../data/data";
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const Data = inventoryData;
-  const inventoryDataLocal = JSON.parse(localStorage.getItem("inventoryState"));
 
-  const [state, dispatch] = useReducer(DataReducer, inventoryDataLocal);
+  const [state, dispatch] = useReducer(DataReducer, initialState);
+  const localInventoryData = localStorage.getItem("inventoryDataState");
 
-  const departments = inventoryDataLocal?.allProducts.reduce(
-    (acc, curr) =>
-      acc.includes(curr.department) ? [...acc] : [...acc, curr.department],
-    []
-  );
   useEffect(() => {
-    localStorage.setItem(
-      "inventoryState",
-      JSON.stringify({
-        allProducts: Data,
-        allDepartments: departments,
-        selectedCategory: "all",
-      })
+    const departments = Data.reduce(
+      (acc, curr) =>
+        acc.includes(curr.department) ? [...acc] : [...acc, curr.department],
+      []
     );
-  }, [Data, departments]);
+    if (localInventoryData) {
+      dispatch({
+        type: "FETCH_INITIAL_DATA",
+        payload: JSON.parse(localInventoryData),
+      });
+    } else {
+      localStorage.setItem(
+        "inventoryDataState",
+        JSON.stringify({
+          allProducts: Data,
+          allDepartments: departments,
+          selectedCategory: "all",
+        })
+      );
+      dispatch({
+        type: "FETCH_INITIAL_DATA",
+        payload: {
+          ...initialState,
+          allProducts: Data,
+          allDepartments: departments,
+        },
+      });
+    }
+  }, [Data]);
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>

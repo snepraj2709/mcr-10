@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { initialState } from "../reducer/DataReducer";
 
 function AddProduct() {
   const { state, dispatch } = useData();
@@ -30,7 +31,34 @@ function AddProduct() {
   };
 
   function addProduct() {
-    dispatch({ type: "AddProduct", payload: newProduct });
+    const imageUrlRegex = /\bhttps?:\/\/\S+\.(?:png|jpe?g|gif|webp)\b/;
+    const media = newProduct.imageUrl;
+    const departments = state?.allProducts?.reduce(
+      (acc, curr) =>
+        acc.includes(curr.department) ? [...acc] : [...acc, curr.department],
+      []
+    );
+    const updatedState = { ...initialState, allDepartments: departments };
+
+    if (!imageUrlRegex.test(media)) {
+      const updatedProducts = [
+        ...state?.allProducts,
+        { ...newProduct, imageUrl: `https://picsum.photos/200/300/?random` },
+      ];
+      localStorage.setItem(
+        "inventoryDataState",
+        JSON.stringify({ ...updatedState, allProducts: updatedProducts })
+      );
+      dispatch({ type: "AddProduct", payload: updatedProducts });
+    } else {
+      const updatedProducts = [...state?.allProducts, { ...newProduct }];
+      localStorage.setItem(
+        "inventoryDataState",
+        JSON.stringify({ ...updatedState, allProducts: updatedProducts })
+      );
+      dispatch({ type: "AddProduct", payload: updatedProducts });
+    }
+
     navigate("/products");
     toast.success("Added New product");
     console.log(newProduct);
